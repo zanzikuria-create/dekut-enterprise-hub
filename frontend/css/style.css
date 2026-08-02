@@ -1,0 +1,730 @@
+/* ===========================
+   GLOBAL SETTINGS
+=========================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+
+    font-family: 'Poppins', sans-serif;
+    background: #F7F9F6;
+    color: #2B2B2B;
+
+}
+
+/* ===========================
+        HEADER
+=========================== */
+.main-header {
+
+    background: #0b7a3b;
+
+    height: 72px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 0 30px;
+
+    color: #fff;
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 1000;
+
+}
+
+.left-header {
+
+    display: flex;
+
+    align-items: center;
+
+    width: 220px;
+
+}
+
+.center-header {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    flex: 1;
+
+    justify-content: center;
+
+}
+
+.right-header {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    width: 220px;
+
+    justify-content: flex-end;
+
+}
+
+.center-header h1 {
+
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: .5px;
+
+}
+
+
+/* ===========================
+      BUTTONS
+=========================== */
+
+button {
+
+    cursor: pointer;
+
+    transition: .3s;
+
+    font-family: 'Poppins';
+
+}
+
+.menu-btn {
+
+    background: #fff;
+
+    color: #0b7a3b;
+
+    border: none;
+
+    padding: 10px 18px;
+
+    border-radius: 25px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    transition: .3s;
+
+}
+
+.menu-btn:hover {
+
+    background: #f2f2f2;
+
+}
+
+.signin-btn,
+.cart-btn {
+
+    background: #fff;
+
+    color: #0b7a3b;
+
+    border: none;
+
+    border-radius: 25px;
+
+    padding: 10px 18px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    transition: .3s;
+
+}
+
+.signin-btn:hover,
+.cart-btn:hover {
+
+    background: #f2f2f2;
+
+}
+
+
+.menu-btn:hover,
+.signin-btn:hover,
+.cart-btn:hover {
+
+    background: #D4AF37;
+
+    color: white;
+
+}
+
+/* cart badge */
+
+.cart-count {
+
+    background: #D4AF37;
+
+    color: white;
+
+    width: 22px;
+
+    height: 22px;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 12px;
+
+    font-weight: bold;
+
+}
+
+/* ===========================
+        SEARCH
+=========================== */
+
+.search-section {
+
+    background: white;
+
+    padding: 25px;
+
+    display: flex;
+
+    justify-content: center;
+
+}
+
+.search-container {
+
+    width: 75%;
+
+    display: flex;
+
+    overflow: hidden;
+
+    border-radius: 40px;
+
+    box-shadow: 0 8px 25px rgba(0, 0, 0, .08);
+
+}
+
+.search-container input {
+
+    flex: 1;
+
+    border: none;
+
+    outline: none;
+
+    padding: 18px;
+
+    font-size: 14px;
+
+}
+
+.search-container button {
+
+    width: 70px;
+
+    border: none;
+
+    background: #0B6B3A;
+
+    color: white;
+
+}
+
+.search-container button:hover {
+
+    background: #D4AF37;
+
+}
+
+/* ===========================
+        TITLES
+=========================== */
+
+h2 {
+
+    font-size: 26px;
+
+    color: #0B6B3A;
+
+    margin-bottom: 25px;
+
+}
+
+/* ===========================
+      CATEGORY SECTIONS
+=========================== */
+
+.category-section {
+
+    width: 92%;
+
+    margin: auto;
+
+    margin-bottom: 60px;
+
+}
+
+/* ===========================
+      ABOUT
+=========================== */
+
+.about-dekut {
+
+    background: white;
+
+    padding: 70px;
+
+    margin-top: 60px;
+
+}
+
+.about-dekut p {
+
+    font-size: 14px;
+
+    color: #555;
+
+    line-height: 1.8;
+
+}
+
+/* ===========================
+      FOOTER
+=========================== */
+
+footer {
+
+    background: #084C2E;
+
+    color: white;
+
+    text-align: center;
+
+    padding: 25px;
+
+}
+
+/*==========================
+SECTION HEADER
+===========================*/
+
+.section-header {
+
+    margin-bottom: 25px;
+
+}
+
+.section-header h2 {
+
+    color: #1B5E20;
+
+    margin-bottom: 5px;
+
+}
+
+.section-header p {
+
+    color: #777;
+
+    font-size: 15px;
+
+}
+
+/*==========================
+PRODUCT GRID
+===========================*/
+
+.product-grid {
+
+    display: grid;
+
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+
+    gap: 25px;
+
+}
+
+/*==========================
+PRODUCT CARD
+===========================*/
+
+.product-card {
+
+    background: white;
+
+    border-radius: 18px;
+
+    overflow: hidden;
+
+    box-shadow: 0 8px 22px rgba(0, 0, 0, .08);
+
+    transition: .35s;
+
+    text-align: center;
+
+    padding-bottom: 20px;
+
+}
+
+.product-card:hover {
+
+    transform: translateY(-8px);
+
+    box-shadow: 0 15px 35px rgba(0, 0, 0, .15);
+
+}
+
+.product-card img {
+
+    width: 100%;
+
+    height: 200px;
+
+    /* show full product without aggressive cropping */
+    object-fit: contain;
+    object-position: center;
+    background: #fff;
+    padding: 12px 0;
+
+}
+
+.product-card h3 {
+
+    margin: 15px 0 10px;
+
+    color: #222;
+
+    font-size: 20px;
+
+}
+
+.rating {
+
+    color: #F4B400;
+
+    font-size: 15px;
+
+    margin-bottom: 10px;
+
+}
+
+.rating span {
+
+    color: #777;
+
+}
+
+.price {
+
+    color: #0B6B3A;
+
+    font-size: 22px;
+
+    font-weight: bold;
+
+    margin-bottom: 18px;
+
+}
+
+.view-btn {
+
+    display: inline-block;
+
+    background: #0B6B3A;
+
+    color: white;
+
+    text-decoration: none;
+
+    padding: 11px 22px;
+
+    border-radius: 30px;
+
+    font-weight: 600;
+
+    transition: .3s;
+
+}
+
+.view-btn:hover {
+
+    background: #D4AF37;
+
+}
+
+/*==========================
+SPECIAL SECTIONS
+==========================*/
+
+.special-products {
+
+    margin-top: 60px;
+
+}
+
+.special-section {
+
+    margin-bottom: 70px;
+
+}
+
+.special-section .section-title {
+
+    margin-bottom: 25px;
+
+}
+
+.special-section h2 {
+
+    color: #0B6B3A;
+
+    font-size: 2rem;
+
+}
+
+.special-section p {
+
+    color: #666;
+
+    margin-top: 6px;
+
+}
+
+/* =======================================================
+   HERO SLIDESHOW
+======================================================= */
+
+.hero-slider {
+    position: relative;
+    /* keep aligned with product grid width */
+    width: 92%;
+    /* allow slightly larger max width on wide screens */
+    max-width: 1400px;
+    /* increased height so slides are more prominent without overpowering */
+    height: 480px;
+    margin: 28px auto 44px;
+    overflow: hidden;
+    border-radius: 16px;
+    background: #f4f4f4;
+    /* softer shadow so it doesn't overshadow content */
+    box-shadow: 0 8px 18px rgba(0, 0, 0, .08);
+}
+
+.slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity .6s ease;
+    pointer-events: none;
+}
+
+.slide.active {
+    opacity: 1;
+    pointer-events: auto;
+    z-index: 1;
+}
+
+.slide a {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
+/* Dark overlay */
+
+.slide::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(rgba(0, 0, 0, .15),
+            rgba(0, 0, 0, .35));
+}
+
+/* Text */
+
+.slide-content {
+    position: absolute;
+    left: 45px;
+    bottom: 40px;
+    z-index: 5;
+
+    background: rgba(0, 0, 0, .45);
+
+    color: white;
+
+    padding: 18px 25px;
+
+    border-radius: 12px;
+
+    max-width: 450px;
+}
+
+.slide-content h2 {
+
+    color: white;
+
+    margin-bottom: 8px;
+
+    font-size: 2rem;
+
+}
+
+.slide-content p {
+
+    color: #f5f5f5;
+
+    line-height: 1.6;
+
+    font-size: 15px;
+
+}
+
+/* ===========================
+        Arrows
+=========================== */
+
+.prev-slide,
+.next-slide {
+
+    position: absolute;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    width: 48px;
+
+    height: 48px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, .9);
+
+    color: #0B6B3A;
+
+    font-size: 24px;
+
+    cursor: pointer;
+
+    transition: .3s;
+
+    z-index: 20;
+}
+
+.prev-slide {
+
+    left: 20px;
+
+}
+
+.next-slide {
+
+    right: 20px;
+
+}
+
+.prev-slide:hover,
+.next-slide:hover {
+
+    background: #0B6B3A;
+
+    color: white;
+
+}
+
+/* ===========================
+          Dots
+=========================== */
+
+.slider-dots {
+
+    position: absolute;
+
+    bottom: 18px;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    display: flex;
+
+    gap: 10px;
+
+    z-index: 20;
+
+}
+
+.dot {
+
+    width: 12px;
+
+    height: 12px;
+
+    border-radius: 50%;
+
+    background: white;
+
+    opacity: .6;
+
+    cursor: pointer;
+
+    transition: .3s;
+
+}
+
+.dot.active {
+
+    background: #D4AF37;
+
+    opacity: 1;
+
+    transform: scale(1.25);
+
+}
