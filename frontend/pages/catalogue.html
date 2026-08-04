@@ -8,6 +8,15 @@
 
     <title>DeKUT Nexus Catalogue</title>
 
+    <script>
+        (function () {
+            try {
+                var s = JSON.parse(localStorage.getItem("dekutSettings") || "{}");
+                document.documentElement.setAttribute("data-theme", s.darkMode ? "dark" : "light");
+            } catch (e) {}
+        })();
+    </script>
+
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/responsive.css">
 

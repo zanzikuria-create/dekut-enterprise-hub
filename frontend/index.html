@@ -5,6 +5,14 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>DeKUT Nexus</title>
+<script>
+(function () {
+    try {
+        var s = JSON.parse(localStorage.getItem("dekutSettings") || "{}");
+        document.documentElement.setAttribute("data-theme", s.darkMode ? "dark" : "light");
+    } catch (e) {}
+})();
+</script>
 <!-- Google Font -->
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -122,6 +130,7 @@
 <h2>🆕 What's New</h2>
 <p>Recently added products at DeKUT Enterprise.</p>
 </div>
+<div class="product-grid">
 <div class="product-card">
 <img alt="Rabbit Meat" src="images/products/rabbitmeat.png"/>
 <h3>Rabbit Meat</h3>
@@ -191,6 +200,7 @@
 <a class="view-btn" href="pages/product.html?id=5">
                 View Product
             </a>
+</div>
 </div>
 
 </section>
@@ -705,15 +715,15 @@
 <div class="summary">
 <div>
 <strong>Orders</strong>
-<span>4</span>
+<span id="ordersCount">0</span>
 </div>
 <div>
 <strong>Wishlist</strong>
-<span>12</span>
+<span id="wishlistCount">0</span>
 </div>
 <div>
 <strong>Vouchers</strong>
-<span>2</span>
+<span>0</span>
 </div>
 </div>
 </div>
@@ -736,7 +746,7 @@
 
                     <span>&gt;</span>
 </a>
-<a href="#">
+<a href="pages/settings.html">
 
                     ⚙️ Settings
 
@@ -748,7 +758,7 @@
 
                     <span>&gt;</span>
 </a>
-<a href="#">
+<a href="pages/contact.html">
 
                     📞 Contact Us
 

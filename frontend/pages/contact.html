@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>DeKUT Nexus | Contact Us</title>
+
+    <script>
+        (function () {
+            try {
+                var s = JSON.parse(localStorage.getItem("dekutSettings") || "{}");
+                document.documentElement.setAttribute("data-theme", s.darkMode ? "dark" : "light");
+            } catch (e) {}
+        })();
+    </script>
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+    <header class="main-header">
+        <div class="left-header">
+            <button class="menu-btn">
+                <i class="fa-solid fa-bars"></i>
+                Menu
+            </button>
+        </div>
+        <div class="center-header">
+            <div>
+                <h1>DeKUT Nexus</h1>
+                <p>Innovation • Enterprise • Community</p>
+            </div>
+        </div>
+        <div class="right-header">
+            <button class="signin-btn">
+                <i class="fa-solid fa-user"></i>
+                Sign In
+            </button>
+            <button class="cart-btn">
+                <i class="fa-solid fa-cart-shopping"></i>
+                Cart
+                <span class="cart-count">0</span>
+            </button>
+        </div>
+    </header>
+
+    <main class="page-wrap" style="max-width:1100px;">
+
+        <div class="product-breadcrumb">
+            <a href="../index.html" class="back-link">
+                <i class="fa-solid fa-arrow-left"></i>
+                Home
+            </a>
+        </div>
+
+        <div class="page-header">
+            <h1>Contact Us</h1>
+            <p>Questions, feedback, or a bulk order? Send us a message.</p>
+        </div>
+
+        <div id="successBanner"></div>
+
+        <div class="contact-layout">
+
+            <div class="panel">
+                <div class="form-field">
+                    <label for="contactName">Full Name</label>
+                    <input type="text" id="contactName" placeholder="Your name">
+                    <span class="form-error">Please enter your name.</span>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-field">
+                        <label for="contactEmail">Email</label>
+                        <input type="email" id="contactEmail" placeholder="you@example.com">
+                        <span class="form-error">Please enter a valid email.</span>
+                    </div>
+                    <div class="form-field">
+                        <label for="contactSubject">Subject</label>
+                        <input type="text" id="contactSubject" placeholder="What's this about?">
+                        <span class="form-error">Please enter a subject.</span>
+                    </div>
+                </div>
+
+                <div class="form-field">
+                    <label for="contactMessage">Message</label>
+                    <textarea id="contactMessage" rows="6" placeholder="Write your message..."></textarea>
+                    <span class="form-error">Please enter a message.</span>
+                </div>
+
+                <button class="primary-btn" id="sendMessageBtn">
+                    <i class="fa-solid fa-paper-plane"></i>
+                    Send Message
+                </button>
+            </div>
+
+            <div class="contact-info-card">
+                <h3>Get in Touch</h3>
+                <div class="info-row">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <span>Dedan Kimathi University of Technology, Nyeri, Kenya</span>
+                </div>
+                <div class="info-row">
+                    <i class="fa-solid fa-phone"></i>
+                    <span>+254 701 109 967</span>
+                </div>
+                <div class="info-row">
+                    <i class="fa-solid fa-envelope"></i>
+                    <span>sdc@dekut.ac.ke</span>
+                </div>
+                <div class="info-row">
+                    <i class="fa-regular fa-clock"></i>
+                    <span>Mon – Fri, 8:00 AM – 5:00 PM</span>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <script src="../js/products-data.js"></script>
+    <script src="../js/app.js"></script>
+    <script src="../js/contact.js"></script>
+
+</body>
+
+</html>

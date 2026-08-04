@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>DeKUT Nexus | Settings</title>
+
+    <script>
+        (function () {
+            try {
+                var s = JSON.parse(localStorage.getItem("dekutSettings") || "{}");
+                document.documentElement.setAttribute("data-theme", s.darkMode ? "dark" : "light");
+            } catch (e) {}
+        })();
+    </script>
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+    <header class="main-header">
+        <div class="left-header">
+            <button class="menu-btn">
+                <i class="fa-solid fa-bars"></i>
+                Menu
+            </button>
+        </div>
+        <div class="center-header">
+            <div>
+                <h1>DeKUT Nexus</h1>
+                <p>Innovation • Enterprise • Community</p>
+            </div>
+        </div>
+        <div class="right-header">
+            <button class="signin-btn">
+                <i class="fa-solid fa-user"></i>
+                Sign In
+            </button>
+            <button class="cart-btn">
+                <i class="fa-solid fa-cart-shopping"></i>
+                Cart
+                <span class="cart-count">0</span>
+            </button>
+        </div>
+    </header>
+
+    <main class="page-wrap">
+
+        <div class="product-breadcrumb">
+            <a href="../index.html" class="back-link">
+                <i class="fa-solid fa-arrow-left"></i>
+                Home
+            </a>
+        </div>
+
+        <div class="page-header">
+            <h1>Settings</h1>
+            <p>Manage your profile, preferences and data.</p>
+        </div>
+
+        <div class="panel">
+
+            <div class="settings-section">
+                <h3>Profile</h3>
+
+                <div class="form-row">
+                    <div class="form-field">
+                        <label for="settingName">Full Name</label>
+                        <input type="text" id="settingName" placeholder="e.g. Zanzi Kimani">
+                    </div>
+                    <div class="form-field">
+                        <label for="settingEmail">Email</label>
+                        <input type="email" id="settingEmail" placeholder="you@example.com">
+                    </div>
+                </div>
+
+                <div class="form-field">
+                    <label for="settingPhone">Phone Number</label>
+                    <input type="tel" id="settingPhone" placeholder="07XX XXX XXX">
+                </div>
+
+                <button class="primary-btn" id="saveProfileBtn">
+                    <i class="fa-solid fa-floppy-disk"></i>
+                    Save Profile
+                </button>
+            </div>
+
+            <div class="settings-section">
+                <h3>Preferences</h3>
+
+                <div class="toggle-row">
+                    <div class="label-text">
+                        <strong>Dark Mode</strong>
+                        <span>Switch between light and dark theme</span>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="darkModeSwitch">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+
+                <div class="toggle-row">
+                    <div class="label-text">
+                        <strong>Order &amp; Promo Notifications</strong>
+                        <span>Get updates about your orders and offers</span>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="notificationsSwitch">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <h3>Your Data</h3>
+                <p style="color:#777; font-size:14px; margin-bottom:16px;">
+                    Everything on DeKUT Nexus is stored locally in this browser. You can clear it below.
+                </p>
+                <div class="danger-zone">
+                    <button class="danger-btn" id="clearCartBtn">Clear Cart</button>
+                    <button class="danger-btn" id="clearWishlistBtn">Clear Wishlist</button>
+                    <button class="danger-btn" id="clearOrdersBtn">Clear Order History</button>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <script src="../js/products-data.js"></script>
+    <script src="../js/app.js"></script>
+    <script src="../js/settings.js"></script>
+
+</body>
+
+</html>
