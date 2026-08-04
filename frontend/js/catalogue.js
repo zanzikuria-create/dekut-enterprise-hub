@@ -1,188 +1,115 @@
-// ======================================
-// DeKUT Nexus Product Catalogue
-// ======================================
+// ======================================================
+// DeKUT Nexus — Product Catalogue Page
+// Reads ?search= and/or ?category= from the URL and
+// renders matching products from the shared PRODUCTS list.
+// ======================================================
 
-const products = [
-
-    {
-        category: "coffee",
-        name: "Ground Coffee",
-        price: 350,
-        rating: "⭐⭐⭐⭐⭐",
-        image: "../images/coffee/ground-coffee.jpg"
-    },
-
-    {
-        category: "coffee",
-        name: "Coffee Beans",
-        price: 450,
-        rating: "⭐⭐⭐⭐⭐",
-        image: "../images/coffee/coffee-beans.jpg"
-    },
-
-    {
-        category: "coffee",
-        name: "Coffee Gift Pack",
-        price: 1200,
-        rating: "⭐⭐⭐⭐⭐",
-        image: "../images/coffee/gift-pack.jpg"
-    },
-
-    {
-        category: "coffee",
-        name: "Coffee Seedlings",
-        price: 250,
-        rating: "⭐⭐⭐⭐⭐",
-        image: "../images/coffee/seedlings.jpg"
-    },
-
-    {
-        category: "honey",
-        name: "Pure Honey",
-        price: 250,
-        rating: "⭐⭐⭐⭐⭐",
-        image: "../images/honey/honey.jpg"
-    },
-
-    {
-        category: "milk",
-        name: "Fresh Milk",
-        price: 60,
-        rating: "⭐⭐⭐⭐⭐",
-        image: "../images/milk/milk.jpg"
-    },
-
-    {
-        category: "yoghurt",
-        name: "Vanilla Yoghurt",
-        price: 100,
-        rating: "⭐⭐⭐⭐⭐",
-        image: "../images/yoghurt/vanilla.jpg"
-    },
-
-    {
-        category: "merchandise",
-        name: "Coffee Mug",
-        price: 500,
-        rating: "⭐⭐⭐⭐⭐",
-        image: "../images/merchandise/mug.jpg"
-    }
-
-];
-
-// ======================================
+const ASSET_BASE = "../";
 
 const params = new URLSearchParams(window.location.search);
+const searchTerm = (params.get("search") || "").trim().toLowerCase();
+const categoryParam = (params.get("category") || "").trim().toLowerCase();
 
-const search = params.get("search").toLowerCase();
+const catalogueTitleEl = document.getElementById("catalogueTitle");
+const catalogueEl = document.getElementById("catalogueProducts");
+const relatedEl = document.getElementById("relatedProducts");
 
-document.getElementById("catalogueTitle").textContent =
-    search.charAt(0).toUpperCase() +
-    search.slice(1) +
-    " Catalogue";
+// ------------------------------------------------------
+// Work out a friendly page title
+// ------------------------------------------------------
 
-const catalogue = document.getElementById("catalogueProducts");
+function buildTitle() {
+    if (categoryParam && CATEGORY_LABELS[categoryParam]) {
+        return CATEGORY_LABELS[categoryParam];
+    }
+    if (searchTerm) {
+        return `Results for "${searchTerm}"`;
+    }
+    return "All Products";
+}
 
-const related = document.getElementById("relatedProducts");
+catalogueTitleEl.textContent = buildTitle();
 
-// products found
+// ------------------------------------------------------
+// Filter products
+// ------------------------------------------------------
 
-const foundProducts = products.filter(product =>
-    product.category.includes(search) ||
-    product.name.toLowerCase().includes(search)
+function matchesSearch(product) {
+    if (!searchTerm) return true;
+    return (
+        product.name.toLowerCase().includes(searchTerm) ||
+        product.category.toLowerCase().includes(searchTerm) ||
+        product.section.toLowerCase().includes(searchTerm)
+    );
+}
+
+function matchesCategory(product) {
+    if (!categoryParam) return true;
+    return product.category.toLowerCase() === categoryParam;
+}
+
+const foundProducts = PRODUCTS.filter(
+    product => matchesSearch(product) && matchesCategory(product)
 );
 
-// related products
+// Related products: same category as the first result, excluding results already shown
+const primaryCategory = foundProducts[0] ? foundProducts[0].category : null;
 
-const relatedProducts = products.filter(product =>
-    product.category !== search
-).slice(0, 4);
+const relatedProducts = PRODUCTS.filter(product => {
+    if (foundProducts.includes(product)) return false;
+    if (primaryCategory) return product.category === primaryCategory;
+    return true;
+}).slice(0, 4);
 
-// ======================================
-// Display Products
-// ======================================
+// ------------------------------------------------------
+// Card rendering
+// ------------------------------------------------------
+
+function priceLabel(product) {
+    if (product.price === null) return product.priceDisplay;
+    return product.priceDisplay;
+}
 
 function createCard(product) {
+    const ratingMarkup = product.rating
+        ? `<div class="rating">${renderStars(product.rating)} <span>(${product.rating.toFixed(1)})</span></div>`
+        : "";
 
     return `
-
         <div class="product-card">
-
-            <img src="${product.image}" alt="${product.name}">
-
+            <img src="${ASSET_BASE}${product.image}" alt="${product.name}">
             <h3>${product.name}</h3>
-
-            <div class="rating">
-
-                ${product.rating}
-
-            </div>
-
-            <div class="price">
-
-                KSh ${product.price}
-
-            </div>
-
-            <a href="product.html" class="view-btn">
-
-                View Product
-
+            ${ratingMarkup}
+            <div class="price">${priceLabel(product)}</div>
+            <a href="product.html?id=${product.id}" class="view-btn">
+                ${product.ctaText || "View Product"}
             </a>
-
         </div>
-
     `;
-
 }
 
-// ================================
-// Products Found
-// ================================
+// ------------------------------------------------------
+// Render: products found
+// ------------------------------------------------------
 
 if (foundProducts.length > 0) {
-
-    foundProducts.forEach(product => {
-
-        catalogue.innerHTML += createCard(product);
-
-    });
-
+    catalogueEl.innerHTML = foundProducts.map(createCard).join("");
 } else {
-
-    catalogue.innerHTML = `
-
+    catalogueEl.innerHTML = `
         <div class="no-products">
-
-            <img src="../images/elephant-search.png"
-                 alt="Not Found"
-                 style="width:220px;">
-
-            <h2>
-
-                Product Not Found
-
-            </h2>
-
-            <p>
-
-                Your search "${search}"
-                found no matching products.
-
-            </p>
-
+            <img src="${ASSET_BASE}images/placeholder.svg" alt="Not Found" style="width:220px;">
+            <h2>Product Not Found</h2>
+            <p>Your search "${searchTerm || categoryParam}" found no matching products.</p>
         </div>
-
     `;
-
 }
 
-// ================================
-// Related Products
-// ================================
+// ------------------------------------------------------
+// Render: related products
+// ------------------------------------------------------
 
-relatedProducts.forEach(product => {
-
-    related.innerHTML += createCard(product);
-
-});
+if (relatedProducts.length > 0) {
+    relatedEl.innerHTML = relatedProducts.map(createCard).join("");
+} else {
+    relatedEl.closest("section").style.display = "none";
+}
